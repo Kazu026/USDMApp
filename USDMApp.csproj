@@ -58,7 +58,7 @@
     <Compile Include="Specification.cs" />
     <Compile Include="USDM.cs" />
     <Compile Include="Xsl.cs" />
-    <Compile Include="Reqire.cs" />
+    <Compile Include="Require.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

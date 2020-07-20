@@ -22,36 +22,41 @@ namespace USDMApp
     public partial class MainWindow : Window
     {
         private Xls xls;
-        private Reqire require;
-        
+        private List<USDM> usdmlist = new List<USDM>();
+        private USDM usdm;
+        private string path;
+        private int numofreq;//要求の数
+
         public MainWindow()
         {
-           
+            
+            usdm = new USDM();
+            usdmlist.Add(usdm);
             InitializeComponent();
-            require = new Reqire();
-
+            
         }
 
         private void Openfile_Click(object sender, RoutedEventArgs e)
         {
-            xls = new Xls();
+            numofreq = 0;
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.FileName = "";
             ofd.DefaultExt = "*.*";
             if (ofd.ShowDialog() == true)
             {
-                xls.path = ofd.FileName;
+                path = ofd.FileName;
             }
             else
             {
                 MessageBox.Show("ファイルが指定されていません");
                 return;
             }
-            xls.Openbook();
-
-
-            xls.set_require(require);
-            column1.Text = require.text;
+            xls = new Xls();
+            xls.Openbook(path);
+           usdmlist[0].AddRequireText(xls.read_require(),numofreq);
+            
+            column1.Text = usdm.getRequireText(numofreq);
            
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace USDMApp
 {
-    class Reqire
+    class Require
     {
         public string text { set; get; }
         public string id { set; get; }

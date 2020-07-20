@@ -14,8 +14,8 @@ namespace USDMApp
         private mExcel.Application xls;     // Excel自体 
         private mExcel.Workbook book = null;       // ブック 
         private mExcel.Worksheet sheet = null;     // シート
-        private Reqire require;
-        public string path { get; set; } = null;
+        private Require require;
+       
 
 
 
@@ -28,12 +28,12 @@ namespace USDMApp
 
         }
 
-        public void Openbook()
+        public void Openbook(string _path)
         {
             try
             {
                 this.book = (mExcel.Workbook)(xls.Workbooks.Open(
-                    path,
+                    _path,
                     Type.Missing,
                     Type.Missing,
                     Type.Missing,
@@ -51,10 +51,6 @@ namespace USDMApp
             }
             catch (Exception e)
             {
-
-            }
-            finally
-            {
                 if (null != this.xls)
                 {
                     // 警告無視設定
@@ -67,16 +63,21 @@ namespace USDMApp
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(this.book);
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(this.xls);
                 }
+
+            }
+            finally
+            {
+               
             }
 
         
          }
 
 
-        public void set_require(Reqire require)
+        public string read_require()
         {
             sheet = (mExcel.Worksheet)this.book.Sheets[1];
-            require.text = sheet.Range["C2"].Text;
+            return sheet.Range["C2"].Text;
         }
 
 

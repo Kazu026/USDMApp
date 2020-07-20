@@ -8,32 +8,39 @@ namespace USDMApp
 {
     class USDM
     {
-        private List<Reqire> requires = new List<Reqire>();
+        private List<Require> requires = new List<Require>();//子要求リスト
+        private Require require;
+
         private List<Specification> specifications = new List<Specification>();
-        public USDM(Reqire _require)
+        public USDM()
+        {
+            require = new Require();
+            requires.Add(require);
+        }
+
+        public void AddRequire(Require _require)
         {
             requires.Add(_require);
         }
 
-        public void AddRequire(Reqire _require)
+        public void AddRequireText(string _text,int numofreq)
         {
-            requires.Add(_require);
+            requires[numofreq].text = _text;
         }
 
-        public void AddRequireText(string _text,int i)
+        public void AddRequireExplanation(string _explanation, int numofreq)
         {
-            requires[i].text = _text;
+            requires[numofreq].explanation = _explanation;
         }
 
-        public void AddRequireExplanation(string _explanation, int i)
+        public void AddRequireReson(string _reason,int numofreq)
         {
-            requires[i].explanation = _explanation;
-        }
-
-        public void AddRequireReson(string _reason,int i)
-        {
-            requires[i].reason = _reason;
+            requires[numofreq].reason = _reason;
         }
         
+        public string getRequireText(int numofreq)
+        {
+            return requires[numofreq].text;
+        }
     }
 }
